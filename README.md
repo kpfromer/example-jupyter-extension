@@ -1,6 +1,6 @@
 # example-jupyter-extension
 
-![Github Actions Status](https://github.com/my_name/myextension/workflows/Build/badge.svg)
+![Github Actions Status](https://github.com/kpfromer/example-jupyter-extension/workflows/Build/badge.svg)
 
 A JupyterLab extension.
 
