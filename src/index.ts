@@ -11,6 +11,10 @@ import {
 } from '@jupyterlab/apputils';
 import { ExtensionWidget } from './ExtensionWidget';
 
+namespace CommandIDS {
+  export const command = 'apod:open';
+}
+
 /**
  * Activate the APOD widget.
  */
@@ -26,9 +30,7 @@ async function activate(
 
   // command assignment
 
-  const command = 'apod:open';
-
-  app.commands.addCommand(command, {
+  app.commands.addCommand(CommandIDS.command, {
     label: 'Random Astronomy Picture',
     execute: () => {
       if (!widget) {
@@ -37,7 +39,7 @@ async function activate(
         const content = new ExtensionWidget();
         widget = new MainAreaWidget({ content });
 
-        widget.id = 'myextension';
+        widget.id = CommandIDS.command;
         widget.title.label = 'Astronomy Picture';
         widget.title.closable = true;
       }
@@ -63,19 +65,19 @@ async function activate(
   });
 
   restorer.restore(tracker, {
-    command,
+    command: CommandIDS.command,
     name: () => 'myextension'
   });
 
   // Add the command to the palette.
-  palette.addItem({ command, category: 'Tutorial' });
+  palette.addItem({ command: CommandIDS.command, category: 'Tutorial' });
 }
 
 /**
  * Initialization data for the myextension extension.
  */
 const extension: JupyterFrontEndPlugin<void> = {
-  id: 'myextension',
+  id: CommandIDS.command,
   autoStart: true,
   requires: [ICommandPalette, ILayoutRestorer],
   activate
